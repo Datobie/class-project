@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Product page</h1>
+    
+    {% for p in product %}
+    <a href="{% url 'detail' p.pk %}">{{ p.name }}</a>
+    {{p.description}} - {{p.get_category_display}} - <img src="{{p.image.url}}" alt="" width="100" height="100"> - {{p.price}}
+    {% endfor %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="create Product">
+    </form>
+</body>
+</html>
